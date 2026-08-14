@@ -1,35 +1,23 @@
-# Unit 1 Discussion: Python OOP, Namespaces, and Copying
+**Unit 1: Object-Oriented Programming in Python**
 
-## Overview
+**Overview**
+This project explores core object-oriented programming (OOP) concepts in Python through a hands-on implementation. 
+Using a vehicle-themed class hierarchy, it demonstrates how inheritance, namespaces, and object copying work in practice. 
+The goal is to show not just how to write OOP code, but why these concepts matter for building maintainable and reusable software.
+The program is organized into a parent class, a child class that extends it, and two demonstration functions 
+that illustrate Python's namespace model and the distinction between shallow and deep copying.
 
-This assignment explores object-oriented programming (OOP) concepts in Python, including inheritance, namespaces, and object copying.
-
-## Learning Objectives
-
-- Create parent and child classes
-- Use inheritance to extend functionality
-- Understand class and instance namespaces
-- Demonstrate shallow and deep copying
-- Apply object-oriented design principles
-
-## Requirements
-
-Complete all TODO sections in the source code:
-
-1. Create a parent class.
-2. Create a child class using inheritance.
-3. Demonstrate class and instance namespaces.
-4. Demonstrate shallow and deep copying.
-5. Create and test objects in `main()`.
-6. Add a student-created extension.
-
-## Discussion Board Reflection
-
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
-
-Your reflection should be approximately 150–200 words and address the following questions:
-
-1. What concepts or skills did you learn while completing this assignment?
-2. What challenges did you encounter, and how did you overcome them?
-3. Compare OOP to procedural programming.
-4. Discuss the benefits of maintainability and reusability and apply this managing overhead, practical application development, and future use.
+**Implementation Summary**
+ParentClass — A base Vehicle class containing one class variable (category), two instance variables (make, model), 
+a constructor, and a display_info() method that returns a formatted description of the object.
+ChildClass — Inherits from ParentClass and extends it with a new class variable (wheels), two new instance variables 
+(color and a nested mutable features list), a new add_feature() method, and an overridden display_info() method that 
+incorporates the additional attributes. demonstrate_namespaces() — Creates two child objects and shows the difference 
+between class and instance namespaces. It accesses a class variable through both the class and an instance, 
+adds an attribute to a single object, and prints each object's __dict__ alongside the class namespace to 
+make the distinction visible.
+demonstrate_copying() — Builds an object with nested mutable data, then creates a shallow copy and a deep copy. 
+By modifying the original's nested list and printing all three objects, it shows that the shallow copy shares the nested 
+reference while the deep copy remains fully independent.
+main() — Instantiates parent and child objects, calls their methods to demonstrate inheritance and method overriding, 
+verifies the inheritance relationship with isinstance(), and runs both demonstration functions.

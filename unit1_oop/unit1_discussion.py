@@ -25,7 +25,15 @@ from copy import copy, deepcopy
 # Replace the pass statement with your implementation.
 
 class ParentClass:
-    pass
+    # Class variable (shared across all instances)
+    category = "Vehicle"
+
+    def __init__(self, make, model):
+        self.make = make      # instance variable
+        self.model = model    # instance variable
+
+    def display_info(self):
+        return f"{self.category}: {self.make} {self.model}"
 
 
 # TODO 2:
@@ -41,7 +49,24 @@ class ParentClass:
 # Replace the pass statement with your implementation.
 
 class ChildClass(ParentClass):
-    pass
+    # New class variable
+    wheels = 4
+
+    def __init__(self, make, model, color, features=None):
+        super().__init__(make, model)
+        self.color = color                                  # new instance variable
+        self.features = features if features is not None else []  # new instance variable (nested mutable)
+
+    # New method
+    def add_feature(self, feature):
+        self.features.append(feature)
+        return f"Added {feature} to {self.model}"
+
+    # Override parent method
+    def display_info(self):
+        return (f"{self.category}: {self.color} {self.make} {self.model} "
+                f"with {self.wheels} wheels, features: {self.features}")
+
 
 
 # TODO 3:
@@ -57,8 +82,27 @@ class ChildClass(ParentClass):
 
 def demonstrate_namespaces():
     print("\n=== Namespace Demonstration ===")
-    print("TODO: Implement namespace demonstration")
 
+    # Create two child objects
+    car1 = ChildClass("Toyota", "Corolla", "red")
+    car2 = ChildClass("Honda", "Civic", "blue")
+
+    # Access class variable through the class
+    print("Class variable via class:", ChildClass.category)
+
+    # Access the same class variable through an object
+    print("Class variable via object:", car1.category)
+
+    # Add a new attribute to only one object
+    car1.year = 2024
+    print("Added 'year' attribute to car1 only")
+
+    # Display each object's namespace
+    print("car1 __dict__:", car1.__dict__)
+    print("car2 __dict__:", car2.__dict__)
+
+    # Display class namespace
+    print("ChildClass namespace keys:", list(ChildClass.__dict__.keys()))
 
 # TODO 4:
 # Create a function that demonstrates shallow copying and deep copying.
@@ -73,7 +117,24 @@ def demonstrate_namespaces():
 
 def demonstrate_copying():
     print("\n=== Copy Demonstration ===")
-    print("TODO: Implement shallow copy and deep copy demonstration")
+
+    # Object with nested mutable data (the features list)
+    original = ChildClass("Ford", "Mustang", "black", ["GPS", "Sunroof"])
+
+    # Shallow copy: copies the object but shares the nested list reference
+    shallow = copy(original)
+
+    # Deep copy: recursively copies everything, including the nested list
+    deep = deepcopy(original)
+
+    # Modify the original object's nested data
+    original.features.append("Heated Seats")
+
+    print("Original features:", original.features)
+    # Shallow copy reflects the change because it shares the same list
+    print("Shallow copy features:", shallow.features)
+    # Deep copy is unaffected because it has its own independent list
+    print("Deep copy features:", deep.features)
 
 
 # TODO 5:
@@ -89,9 +150,20 @@ def demonstrate_copying():
 def main():
     print("=== Unit 1 OOP Assignment ===")
 
-    print("\nTODO: Create and test your parent object")
+    # Parent object
+    parent = ParentClass("Generic", "BaseModel")
+    print("\nParent object:")
+    print(parent.display_info())
 
-    print("\nTODO: Create and test your child object")
+    # Child object
+    child = ChildClass("Tesla", "Model 3", "white")
+    print("\nChild object:")
+    print(child.display_info())
+    print(child.add_feature("Autopilot"))
+    print(child.display_info())
+
+    # Inheritance check
+    print("\nIs child a ParentClass?", isinstance(child, ParentClass))
 
     demonstrate_namespaces()
     demonstrate_copying()
