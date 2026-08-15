@@ -1,6 +1,7 @@
 **Unit 1: Object-Oriented Programming in Python**
 
 **Overview**
+
 This project explores core object-oriented programming (OOP) concepts in Python through a hands-on implementation. 
 Using a vehicle-themed class hierarchy, it demonstrates how inheritance, namespaces, and object copying work in practice. 
 The goal is to show not just how to write OOP code, but why these concepts matter for building maintainable and reusable software.
@@ -8,6 +9,7 @@ The program is organized into a parent class, a child class that extends it, and
 that illustrate Python's namespace model and the distinction between shallow and deep copying.
 
 **Implementation Summary**
+
 ParentClass — A base Vehicle class containing one class variable (category), two instance variables (make, model), 
 a constructor, and a display_info() method that returns a formatted description of the object.
 ChildClass — Inherits from ParentClass and extends it with a new class variable (wheels), two new instance variables 
