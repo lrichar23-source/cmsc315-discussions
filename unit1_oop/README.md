@@ -2,8 +2,7 @@
 
 **Overview**
 
-This project explores core object-oriented programming (OOP) concepts in Python through a hands-on implementation. Using a vehicle-themed class hierarchy, it demonstrates how inheritance, namespaces, and object copying work in practice. The goal is to show not just how to write OOP code, but why these concepts matter for building maintainable and reusable software.
-The program is organized into a parent class, a child class that extends it, and two demonstration functions that illustrate Python's namespace model and the distinction between shallow and deep copying.
+This project explored core object-oriented programming (OOP) concepts in Python through a hands-on implementation. Using a vehicle-themed class hierarchy, it demonstrated how inheritance, namespaces, and object copying worked in practice. The goal was to show not just how to write OOP code, but why these concepts mattered for building maintainable and reusable software. The program was organized into a parent class, a child class that extended it, and two demonstration functions that illustrated Python's namespace model and the distinction between shallow and deep copying.
 
 **Implementation Summary**
 
