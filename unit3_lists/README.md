@@ -11,20 +11,20 @@ This assignment examines insertion, deletion, and searching in Python lists.
 - Search for values in a list
 - Analyze list behavior and performance
 
-## Requirements
+**What Was Completed**
 
-1. Test insertion at the beginning, middle, and end.
-2. Test deletion at the beginning, middle, and end.
-3. Search for existing and missing values.
-4. Demonstrate edge cases.
-5. Create a real-world scenario.
+All TODO sections were completed:
 
-## Discussion Board Reflection
+* List creation and basic operations (append, insert, remove, search, display) were implemented.
+* Edge cases were handled: empty list operations, invalid indices, and single-element lists becoming empty.
+* A real-world scenario demonstrating ordered list usage was created and run.
+* Explanatory comments were added throughout the code.
+* The program was tested to verify correct LIFO/FIFO-style ordering behavior where applicable and overall correctness.
 
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
-
-Your reflection should be approximately 150–200 words and address the following questions:
-
-1. What concepts or skills did you learn while completing this assignment?
-2. What challenges did you encounter, and how did you overcome them?
-3. How do list operations impact performance in real-world applications?
+**Design approach**
+My program implements three core list operations — insert_at, delete_at, and search_value — each wrapping Python's 
+built-in list methods (insert(), pop(), and a manual linear scan) while adding validation and explanatory comments. 
+I demonstrated the list's flexibility using a simple numeric dataset, inserting and deleting values at the beginning, 
+middle, and end to show how position affects performance. I chose this generic numeric list because it makes the shifting 
+behavior easy to observe directly in the printed output — you can watch the list reorganize itself after each operation, 
+which makes the underlying mechanics concrete rather than abstract.
