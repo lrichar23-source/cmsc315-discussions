@@ -21,6 +21,15 @@ All TODO sections were completed:
 * Explanatory comments were added throughout the code.
 * The program was tested to verify correct LIFO/FIFO-style ordering behavior where applicable and overall correctness.
 
+I implemented a Python application that demonstrated list data structure usage by completing the TODO prompts in the 
+starter file, running and verifying the functionality, and committing my documented code with explanatory comments to GitHub.
+I analyzed list structure performance by describing when a linked list might outperform an array-based list, sharing a 
+real-world scenario that uses a list data structure, and comparing my implementation approach with at least two peers, 
+including edge case handling (empty inputs, invalid operations, boundary conditions, or performance constraints).
+I evaluated list implementation quality by examining peer solutions, identifying differences in design approaches, 
+and suggesting specific improvements to efficiency, robustness, or usability based on the requirements of the application scenario.
+
+
 **Design approach**
 My program implements three core list operations — insert_at, delete_at, and search_value — each wrapping Python's 
 built-in list methods (insert(), pop(), and a manual linear scan) while adding validation and explanatory comments. 

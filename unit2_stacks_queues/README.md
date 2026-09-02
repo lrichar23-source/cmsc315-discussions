@@ -25,6 +25,15 @@ All TODO sections were completed:
 5. Edge cases were tested: empty pop/peek/dequeue/front, and single-item structures becoming empty after removal.
 6. Real-world scenarios (browser history and print queue) were created and run.
 
+I implemented stack and queue data structures in Python by completing the TODO prompts in the starter file, adding explanatory 
+comments to document my LIFO and FIFO operations, and committing my code with completed README documentation to GitHub.
+I analyzed stack and queue behavior by explaining my design approach and how my application scenario demonstrated the 
+use of these data structures, explaining why a stack uses LIFO and a queue uses FIFO with real-world use cases for each, 
+and describing theoretically how memory usage grows as items are added to my structures.
+I evaluated stack and queue implementations by comparing my approach with at least two peers, analyzing 
+how they handled edge cases (empty inputs, invalid operations, boundary conditions, or performance constraints related 
+to stack overflow or queue capacity), and suggesting specific improvements to efficiency, robustness, or usability.
+
 **Reflection**
 Working through this assignment reinforced how stacks and queues aren't just abstract structures — they mirror everyday 
 sequencing problems like undo/redo, browser history, and task scheduling. I learned how choosing the right underlying 
