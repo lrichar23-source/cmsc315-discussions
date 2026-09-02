@@ -31,6 +31,17 @@ Your reflection should be approximately 150–200 words and address the followin
 2. What challenges did you encounter, and how did you overcome them?
 3. Explain BST behavior and compare to how ordering works to create efficiency as compared to other data structures.
 
+I implemented a binary search tree application in Python by completing the TODO prompts in the starter file, adding 
+explanatory comments to document my BST insertion and traversal operations, and committing my code with completed 
+README documentation to GitHub.
+I analyzed binary search tree performance characteristics by explaining my design approach, reflecting on how trees 
+improve performance compared to other data structures, describing scenarios where BSTs can become inefficient, and 
+identifying a real-world application that demonstrates BST usage.
+I evaluated BST implementation quality by comparing my approach with at least two peers, analyzing how they handled edge 
+cases (empty inputs, invalid operations, boundary conditions, insertion order effects, or tree shape variations), 
+and suggesting specific improvements to efficiency, robustness, or usability.
+
+
 **Reflection**
 
 Completing this Binary Search Tree assignment deepened my understanding of recursion and how tree-based data structures 
