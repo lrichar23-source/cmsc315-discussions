@@ -35,6 +35,7 @@ how they handled edge cases (empty inputs, invalid operations, boundary conditio
 to stack overflow or queue capacity), and suggesting specific improvements to efficiency, robustness, or usability.
 
 **Reflection**
+
 Working through this assignment reinforced how stacks and queues aren't just abstract structures — they mirror everyday 
 sequencing problems like undo/redo, browser history, and task scheduling. I learned how choosing the right underlying 
 container matters for performance: using deque for the queue instead of a plain list avoids the O(n) cost of removing 
@@ -47,6 +48,7 @@ thing added is the first thing removed, while a queue is FIFO, preserving insert
 shapes which real-world problems each one models well.
 
 **Design approach**
+
 I used a browser back-button history as my stack scenario and a printer job spooler as my queue scenario, since both are 
 situations most people intuitively understand. The stack fits browsing because reversing your most recent action 
 (visiting a new page) is exactly what "back" does — it undoes the last step, not the first. The printer queue fits FIFO 

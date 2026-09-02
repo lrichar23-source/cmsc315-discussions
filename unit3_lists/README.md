@@ -31,6 +31,7 @@ and suggesting specific improvements to efficiency, robustness, or usability bas
 
 
 **Design approach**
+
 My program implements three core list operations — insert_at, delete_at, and search_value — each wrapping Python's 
 built-in list methods (insert(), pop(), and a manual linear scan) while adding validation and explanatory comments. 
 I demonstrated the list's flexibility using a simple numeric dataset, inserting and deleting values at the beginning, 
