@@ -2,7 +2,6 @@
 ===========================================================
 UNIT 8 DISCUSSION: BREADTH-FIRST SEARCH (BFS)
 ===========================================================
-
 STUDENT INSTRUCTIONS:
 
 This assignment is designed to help you understand how graphs
@@ -18,74 +17,154 @@ from collections import deque
 
 def bfs(graph, start):
     """
-    TODO (Student):
-    Implement Breadth-First Search (BFS).
+    Breadth-First Search (BFS): explores a graph level by level,
+    visiting all of a node's immediate neighbors before moving on
+    to neighbors of neighbors.
 
-    Requirements:
-    - Use a queue to manage traversal order.
-    - Track visited nodes to prevent revisiting nodes.
-    - Visit nodes level by level.
-    - Return the order in which nodes were visited.
+    Why a queue is used:
+    A queue is First-In-First-Out (FIFO), which matches exactly how
+    BFS needs to behave — the earliest-discovered nodes must be
+    explored before newer ones. This guarantees nodes are visited in
+    order of their distance from the start node (level by level).
 
-    Add comments explaining:
-    - Why a queue is used.
-    - Why neighbors are added to the queue.
-    - How BFS differs from depth-first traversal.
+    Why neighbors are added to the queue:
+    When we visit a node, we don't process its neighbors immediately.
+    Instead, we add them to the back of the queue so all nodes at the
+    current level get processed before we move deeper into the graph.
+    This is what creates the level-by-level traversal pattern.
+
+    How BFS differs from depth-first traversal:
+    DFS uses a stack (or recursion) and dives as deep as possible down
+    one path before backtracking, exploring branch by branch. BFS
+    instead spreads outward evenly, exploring all close neighbors
+    before any distant ones — making it ideal for finding the
+    shortest path in an unweighted graph.
     """
+    # Handle a start node that doesn't exist in the graph
+    if start not in graph:
+        return []  # Nothing to traverse from a node that isn't there
 
-    pass
+    visited = set()       # Track visited nodes to avoid revisiting them
+    visited.add(start)
+    queue = deque([start])  # Queue manages the order nodes are processed
+    order = []             # Records the order nodes were visited in
+
+    while queue:
+        current = queue.popleft()  # Remove from the front (FIFO order)
+        order.append(current)
+
+        # Visit each unvisited neighbor, marking it visited immediately
+        # (not when it's later popped) to prevent it from being added
+        # to the queue multiple times by different nodes.
+        for neighbor in graph.get(current, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)  # Added to the back — explored later
+
+    return order
 
 
 def main():
     print("=== UNIT 8: BREADTH-FIRST SEARCH ===")
 
     # ===============================
-    # TODO (Student): CREATE A GRAPH
+    # CREATE A GRAPH
     # ===============================
-    #
-    # Requirements:
-    # 1. Create a graph using an adjacency list.
-    # 2. Include at least 6 nodes.
-    # 3. Include multiple connections between nodes.
-    # 4. Clearly display the graph structure.
-    # 5. Use comments to explain what the nodes and edges represent.
-
     print("\n=== GRAPH STRUCTURE ===")
-    print("TODO: Create and display a graph.")
+
+    # Each key is a node (e.g., a person, city, or computer), and each
+    # value is a list of nodes it's directly connected to. Think of
+    # this as a small social network: nodes are people, and edges
+    # represent friendships/connections between them.
+    social_graph = {
+        "Alice": ["Bob", "Carol"],
+        "Bob": ["Alice", "David"],
+        "Carol": ["Alice", "Eve"],
+        "David": ["Bob", "Frank"],
+        "Eve": ["Carol", "Frank"],
+        "Frank": ["David", "Eve"],
+    }
+
+    print("Graph (adjacency list):")
+    for node, neighbors in social_graph.items():
+        print(f"  {node}: {neighbors}")
+    # This graph has 6 nodes and multiple connections, including
+    # some nodes with more than one edge, so BFS has real branching
+    # decisions to make.
 
     # ===============================
-    # TODO (Student): BFS TRAVERSAL
+    # BFS TRAVERSAL
     # ===============================
-    #
-    # Requirements:
-    # 1. Select a starting node.
-    # 2. Perform BFS traversal.
-    # 3. Display the traversal order.
-    # 4. Use comments to explain how BFS visits nodes level by level.
-    # 5. Add at least one additional node or edge
-    #    and demonstrate the updated traversal.
-
     print("\n=== BFS TRAVERSAL ===")
-    print("TODO: Perform and explain BFS traversal.")
+
+    start_node = "Alice"
+    traversal_order = bfs(social_graph, start_node)
+    print(f"Starting BFS from '{start_node}':")
+    print(f"Traversal order: {traversal_order}")
+    # BFS first visits Alice's direct neighbors (Bob, Carol) — level 1.
+    # Then it visits THEIR unvisited neighbors (David, Eve) — level 2.
+    # Finally it reaches Frank, who is connected to both David and Eve
+    # — level 3. This demonstrates the "spreading outward" pattern:
+    # everyone one step away is visited before anyone two steps away.
+
+    # Adding an additional node/edge and re-running the traversal
+    social_graph["Grace"] = ["Frank"]
+    social_graph["Frank"].append("Grace")
+
+    print("\nAdded new node 'Grace', connected to 'Frank'.")
+    updated_order = bfs(social_graph, start_node)
+    print(f"Updated traversal order: {updated_order}")
+    # Grace is now reachable, but only through Frank, who is already
+    # the farthest node from Alice. This pushes Grace out to the new
+    # last level of the traversal, showing how BFS naturally extends
+    # to cover new nodes without changing the earlier visiting order.
 
     # ===============================
-    # TODO (Student): EDGE CASES
+    # EDGE CASES
     # ===============================
-    #
-    # Demonstrate at least two edge cases.
-    #
-    # Example ideas:
-    # - Start from a different node
-    # - Use a disconnected graph
-    # - Handle a missing start node safely
-    # - Graph containing only one node
-    # - Empty graph
-    #
-    # Explain what happens in each case.
-
     print("\n=== EDGE CASE TESTS ===")
-    print("TODO: Demonstrate and explain edge cases.")
 
+    # Edge case 1: Start from a different node
+    print(f"\nBFS starting from 'Frank':")
+    print(bfs(social_graph, "Frank"))
+    # Starting from a different node produces a completely different
+    # traversal order, since "distance" (number of hops) is measured
+    # relative to whichever node we start from.
+
+    # Edge case 2: Disconnected graph
+    disconnected_graph = {
+        "A": ["B"],
+        "B": ["A"],
+        "C": ["D"],
+        "D": ["C"],
+    }
+    print(f"\nDisconnected graph: {disconnected_graph}")
+    print(f"BFS starting from 'A': {bfs(disconnected_graph, 'A')}")
+    # BFS only returns ['A', 'B'] — nodes C and D are never reached
+    # because there's no edge connecting the two separate components.
+    # BFS can only discover nodes that are reachable from the start.
+
+    # Edge case 3: Missing start node
+    print(f"\nBFS starting from missing node 'Zach':")
+    print(bfs(social_graph, "Zach"))
+    # Since "Zach" isn't a key in the graph at all, our function checks
+    # for this case up front and returns an empty list instead of
+    # crashing with a KeyError.
+
+    # Edge case 4: Graph with only one node
+    single_node_graph = {"Solo": []}
+    print(f"\nSingle-node graph: {single_node_graph}")
+    print(f"BFS starting from 'Solo': {bfs(single_node_graph, 'Solo')}")
+    # With no neighbors to explore, BFS simply visits the start node
+    # and immediately finishes, since the queue empties after just
+    # one iteration.
+
+    # Edge case 5: Empty graph
+    empty_graph = {}
+    print(f"\nEmpty graph: {empty_graph}")
+    print(f"BFS starting from 'Anything': {bfs(empty_graph, 'Anything')}")
+    # With no nodes at all, the start node can't exist in the graph,
+    # so our guard clause immediately returns an empty list.
 
 
 if __name__ == "__main__":

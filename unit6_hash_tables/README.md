@@ -21,12 +21,15 @@ This assignment uses Python dictionaries to demonstrate hash table behavior.
 5. Test edge cases.
 6. Create a real-world scenario.
 
-## Discussion Board Reflection
+**Reflection**
 
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
-
-Your reflection should be approximately 150–200 words and address the following questions:
-
-1. What concepts or skills did you learn while completing this assignment?
-2. What challenges did you encounter, and how did you overcome them?
-3. Explain how hash tables behave, what collisions are, and how hash tables can improve efficiency.
+This assignment gave me hands-on practice with Python dictionaries and a deeper understanding of what's happening beneath 
+their simple syntax. I learned how insertion, lookup, update, and deletion all rely on hashing keys to determine storage 
+location, and how Python treats assignment as a dual-purpose operation — creating a new entry if the key is absent, or 
+overwriting the value if it already exists. The main challenge was handling missing keys safely. Directly accessing or 
+deleting a key that doesn't exist raises a KeyError, so I had to use .get() for safe lookups and an if key in dictionary 
+check before deletion. Testing these edge cases helped me understand exactly when Python raises errors versus when it fails silently.
+A hash table works by running each key through a hash function that converts it into a numeric index, telling the structure 
+exactly where to store or retrieve that key's value. This gives average O(1) lookup time, since there's no need to scan 
+every entry like a list would require. Collisions occur when two different keys hash to the same index; hash tables 
+resolve this internally through techniques like chaining or open addressing, preserving efficiency even as more entries are added.
